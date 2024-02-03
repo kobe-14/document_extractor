@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Document Extractor
 
-## Getting Started
+## This application highlights the keys fields in the document receieved from backend and user can approve the fields, etc.,
 
-First, run the development server:
+Document extractor is canvas based application, where the image is drawn on the canvas and the coordinates of the text extracted is highlighted.
 
-```bash
+## Features
+
+- Displays list of fleids
+- Displays the document over a canvas
+- Select the fields to highlight it in the document
+- Delete a particular field
+- Approve the selected fields
+
+## Tech
+
+Document Extractor uses a number of open source projects to work properly:
+
+- [NextJS] - React framework for building the components
+- [Canvas] - To draw and highlights fields on the document
+
+## Installation
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+git clone https://github.com/kobe-14/document_extractor.git
+cd document_extractor
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[//]: # "These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax"
+[Canvas]: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
+[NextJS]: https://nextjs.org/
