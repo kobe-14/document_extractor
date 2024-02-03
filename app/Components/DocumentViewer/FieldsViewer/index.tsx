@@ -42,6 +42,7 @@ const FieldsViewer = ({
 
   const selectAll = useCallback(() => {
     if (docFields) {
+      console.log("selectedFields.length: ", selectedFields.length);
       if (selectedFields.length > 0) {
         handleSelectAllFields([]);
       } else {
@@ -53,7 +54,7 @@ const FieldsViewer = ({
         handleSelectAllFields(selectedDocFields);
       }
     }
-  }, [JSON.stringify(docFields)]);
+  }, [JSON.stringify(docFields), JSON.stringify(selectedFields)]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setCurrentTab(newValue);
