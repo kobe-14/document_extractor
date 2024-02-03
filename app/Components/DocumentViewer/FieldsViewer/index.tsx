@@ -124,9 +124,7 @@ const FieldsViewer = ({
       </Box>
       <Box display="flex" justifyContent="space-between" p={2}>
         <Button variant="contained" onClick={selectAll}>
-          <Typography>
-            {selectedFields.length > 0 ? "De-Select All" : "Select All"}
-          </Typography>
+          <Typography>Select All</Typography>
         </Button>
         <Button
           variant="contained"
