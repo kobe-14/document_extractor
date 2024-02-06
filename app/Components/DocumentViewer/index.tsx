@@ -37,11 +37,18 @@ const DocumentViewer = () => {
   };
 
   return (
-    <Box display="flex">
-      <Box width="80%" display="flex" justifyContent="center" gap={2}>
+    <Box display="flex" gap={2} height={"calc(100vh - 67px)"} overflow="hidden">
+      <Box
+        width="80%"
+        display="flex"
+        justifyContent="center"
+        gap={2}
+        bgcolor="grey.800"
+        borderRadius={2}
+      >
         <DocumentPreview selectedFields={selectedFields} />
       </Box>
-      <Box width="20%">
+      <Box width="20%" bgcolor="grey.800" borderRadius={2} p={1}>
         <FieldsViewer
           handleSelectedFields={handleSelectedFields}
           selectedFields={selectedFields}
