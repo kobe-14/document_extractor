@@ -9,7 +9,7 @@ import {
 
 const alpha = 0.5;
 
-const Preview = ({ page, selectedFields }: IPreviewComponent) => {
+const Preview = ({ page, selectedFields, hoveredField }: IPreviewComponent) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [scale, setScale] = useState<any>(1);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,29 +45,54 @@ const Preview = ({ page, selectedFields }: IPreviewComponent) => {
         context?.drawImage(img, 0, 0, canvas?.width || 0, canvas?.height || 0);
         selectedFields.forEach((selectedField: ISelectedFields) => {
           const { position, color } = selectedField;
-          const [x, y, reactWidth, rectHeight] = position || [];
-          const scaledCoordinates = scaleCoordinates(
-            x,
-            y,
-            reactWidth,
-            rectHeight,
-            canvas,
-            width,
-            height
-          );
-          context.fillStyle = color
-            .replace("rgb", "rgba")
-            .replace(")", `, ${alpha})`);
-          context?.fillRect(
-            scaledCoordinates.x,
-            scaledCoordinates.y,
-            scaledCoordinates.scaledWidth - scaledCoordinates.x,
-            scaledCoordinates.scaledHeight - scaledCoordinates.y
-          );
+          const [x, y, rectWidth, rectHeight] = position || [];
+          drawRectangle(context, canvas, x, y, rectWidth, rectHeight, color);
         });
+        if (hoveredField) {
+          // Check if the hovered field exists inside selectedFields
+          const isFieldSelected = selectedFields.findIndex(
+            (selectedField: ISelectedFields) =>
+              selectedField.id === hoveredField.id
+          );
+          // Highlight the field only if field is not selected
+          if (isFieldSelected === -1) {
+            const { position, color } = hoveredField;
+            const [x, y, rectWidth, rectHeight] = position || [];
+            drawRectangle(context, canvas, x, y, rectWidth, rectHeight, color);
+          }
+        }
       }
     };
-  }, [selectedFields, width, height, url, scale]);
+  }, [selectedFields, width, height, url, scale, hoveredField]);
+
+  function drawRectangle(
+    context: CanvasRenderingContext2D,
+    canvas: HTMLCanvasElement | null,
+    x: number,
+    y: number,
+    reactWidth: number,
+    reactHeight: number,
+    color: string
+  ) {
+    const scaledCoordinates = scaleCoordinates(
+      x,
+      y,
+      reactWidth,
+      reactHeight,
+      canvas,
+      width,
+      height
+    );
+    context.fillStyle = color
+      .replace("rgb", "rgba")
+      .replace(")", `, ${alpha})`);
+    context?.fillRect(
+      scaledCoordinates.x,
+      scaledCoordinates.y,
+      scaledCoordinates.scaledWidth - scaledCoordinates.x,
+      scaledCoordinates.scaledHeight - scaledCoordinates.y
+    );
+  }
 
   function scaleCoordinates(
     x: any,

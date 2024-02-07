@@ -22,6 +22,8 @@ const FieldsViewer = ({
   handleSelectedFields,
   selectedFields,
   handleSelectAllFields,
+  handleMouseEnter,
+  handleMouseLeave,
 }: IFieldsViewComponent) => {
   const [currentTab, setCurrentTab] = useState(0);
   const [docFields, setDocFields] = useState<Array<IDocField>>([]);
@@ -42,7 +44,6 @@ const FieldsViewer = ({
 
   const selectAll = useCallback(() => {
     if (docFields) {
-      console.log("selectedFields.length: ", selectedFields.length);
       if (selectedFields.length > 0) {
         handleSelectAllFields([]);
       } else {
@@ -115,6 +116,8 @@ const FieldsViewer = ({
                   )}
                   handleSelectedFields={handleSelectedFields}
                   deleteHandler={handleFieldDelete}
+                  handleMouseEnter={handleMouseEnter}
+                  handleMouseLeave={handleMouseLeave}
                 />
               ))}
             </List>

@@ -11,6 +11,9 @@ const DocumentViewer = () => {
   const [selectedFields, setSelectedFields] = useState<Array<ISelectedFields>>(
     []
   );
+  const [hoveredField, setHoveredField] = useState<ISelectedFields | null>(
+    null
+  );
 
   const handleSelectedFields = (
     position: number[],
@@ -36,6 +39,12 @@ const DocumentViewer = () => {
     setSelectedFields(fields);
   };
 
+  const handleMouseEnter = (position: number[], id: number, color: string) => {
+    setHoveredField({ position, id, color });
+  };
+
+  const handleMouseLeave = () => setHoveredField(null);
+
   return (
     <Box display="flex" gap={2} height={"calc(100vh - 67px)"} overflow="hidden">
       <Box
@@ -46,13 +55,18 @@ const DocumentViewer = () => {
         bgcolor="grey.800"
         borderRadius={2}
       >
-        <DocumentPreview selectedFields={selectedFields} />
+        <DocumentPreview
+          selectedFields={selectedFields}
+          hoveredField={hoveredField}
+        />
       </Box>
       <Box width="20%" bgcolor="grey.800" borderRadius={2} p={1}>
         <FieldsViewer
           handleSelectedFields={handleSelectedFields}
           selectedFields={selectedFields}
           handleSelectAllFields={handleSelectAllFields}
+          handleMouseEnter={handleMouseEnter}
+          handleMouseLeave={handleMouseLeave}
         />
       </Box>
     </Box>

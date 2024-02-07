@@ -38,6 +38,8 @@ export interface IFieldComoponent {
   checked: boolean;
   handleSelectedFields: Function;
   deleteHandler: Function;
+  handleMouseEnter: Function;
+  handleMouseLeave: Function;
 }
 
 export interface ISelectedFields {
@@ -50,10 +52,13 @@ export interface IFieldsViewComponent {
   handleSelectedFields: Function;
   selectedFields: Array<ISelectedFields>;
   handleSelectAllFields: Function;
+  handleMouseEnter: Function;
+  handleMouseLeave: Function;
 }
 
 export interface IDocumentPreviewComponent {
   selectedFields: Array<ISelectedFields>;
+  hoveredField: any;
 }
 
 export interface IPageInterface {
@@ -68,4 +73,5 @@ export interface IPageInterface {
 export interface IPreviewComponent {
   page: IPageInterface;
   selectedFields: Array<ISelectedFields>;
+  hoveredField: ISelectedFields | null;
 }

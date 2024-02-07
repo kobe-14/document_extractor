@@ -8,7 +8,10 @@ import pageData from "@/app/utils/data/pages.json";
 import { flattenArray } from "@/app/utils/helpers/common";
 import Preview from "./Preview";
 
-const DocumentPreview = ({ selectedFields }: IDocumentPreviewComponent) => {
+const DocumentPreview = ({
+  selectedFields,
+  hoveredField,
+}: IDocumentPreviewComponent) => {
   const [documentPages, setDocumentPages] = useState<Array<IPageInterface>>([]);
 
   useEffect(() => {
@@ -27,7 +30,12 @@ const DocumentPreview = ({ selectedFields }: IDocumentPreviewComponent) => {
   return (
     <>
       {documentPages.map((page: IPageInterface) => (
-        <Preview key={page.id} page={page} selectedFields={selectedFields} />
+        <Preview
+          key={page.id}
+          page={page}
+          selectedFields={selectedFields}
+          hoveredField={hoveredField}
+        />
       ))}
     </>
   );

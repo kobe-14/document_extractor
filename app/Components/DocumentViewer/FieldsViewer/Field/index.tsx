@@ -12,12 +12,21 @@ import Checkbox from "@mui/material/Checkbox";
 import { IFieldComoponent } from "@/app/utils/interfaces/documentField";
 
 const Field = (props: IFieldComoponent) => {
-  const { field, checked, handleSelectedFields, deleteHandler } = props || {};
+  const {
+    field,
+    checked,
+    handleSelectedFields,
+    deleteHandler,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = props || {};
 
   const { id, label, content, color } = field || {};
 
   return (
     <ListItem
+      onMouseEnter={() => handleMouseEnter(content?.position || [], id, color)}
+      onMouseLeave={() => handleMouseLeave()}
       disablePadding
       secondaryAction={
         <>
